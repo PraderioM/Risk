@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title>Usar cartes</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1" />
+	<script language="JavaScript">
+	/* function use will permitt the player i to chose the cards to use and will use them if possible*/
+	function use(i){
+		var text, j, listelement, figure;
+		player=window.opener.Jugador['jugador'+i];
+		text='<table style="width:80%">\n<tr>\n';
+		text+='<td align="center">Selecciona les cartes que vols utilitzar '+player.name+'</td>\n';
+		text+='<td align="center"><select multiple name="ChosenCards" id="ChosenCards">';
+		for (j=0; j<player.cards.length; j++){
+			listelement=player.cards[j];
+			if (listelement!='Joker1' && listelement!='Joker2'){
+				text+='<option value="'+listelement+'">'+window.opener.Territori[listelement].name+' = ';
+				figure=window.opener.Cards[listelement];
+				if (figure==0){
+					text+='soldat';
+				}
+				else if (figure==1){
+					text+='cavall';
+				}
+				else{
+					text+='cano';
+				}
+				text+='</option>\n';
+			}
+			else{
+				text+='<option value="'+listelement+'">Comodin</option>\n';
+			}
+		}
+		text+='</td>\n';
+		text+='<td align="center"><input type="button" value="Acceptar" name="CheckCards" id="CheckCards" onclick="checkcards('+i+')">';
+		text+='\n</td>\n</tr>';
+		document.getElementById("ShowCards").innerHTML=text;
+	}
+
+	/* function checkcards will check if the selected cards are correct and will add troups depending on the cards combination*/
+	function checkcards(i){
+		var name, soldiers=0, horses=0, cannons=0, all=0, joker=0, n, j, k=0, names=[];
+		n=window.opener.Jugador["jugador"+i].cards.length;
+		esccards:
+		for (j=0; j<n; j++){
+			if (document.getElementById("ChosenCards").options[j].selected){
+				name=document.getElementById("ChosenCards").options[j].value;
+				names.push(name);
+				names.push(j);
+				k++;
+				if (k>3){
+					alert('Hi ha masses cartes seleccionades.');
+					break esccards;
+				}
+				if (window.opener.Cards[name]==0){
+					if (soldiers==0){
+						all++;
+					}
+					soldiers++;
+				}
+				else if (window.opener.Cards[name]==1){
+					if (horses==0){
+						all++;
+					}
+					horses++;
+				}
+				else if (window.opener.Cards[name]==2){
+					if (cannons==0){
+						all++;
+					}
+					cannons++;
+				}
+				else if (window.opener.Cards[name]==3){
+					joker++;
+				}
+			}
+		}
+		joker=2-joker;
+		if (k<4){
+			if (soldiers>joker || horses>joker || cannons>joker || all>joker){
+				var g, l, c;
+				if (soldiers>joker){
+					window.opener.Reinforce.troup+=4;
+				}
+				else if (horses>joker){
+					window.opener.Reinforce.troup+=6;
+				}
+				else if (cannons>joker){
+					window.opener.Reinforce.troup+=8;
+				}
+				else if (all>joker){
+					window.opener.Reinforce.troup+=10;
+				}
+				for (g=2; g>-1; g--){
+					window.opener.Cards.list.push(names[2*g]);
+					if (names[2*g]!="Joker1" && names[2*g]!="Joker2"){
+						if (window.opener.Territori[names[2*g]].jugador==window.opener.Jugador["jugador"+i]){
+							window.opener.Territori[names[2*g]].tropes++;
+							window.opener.Reinforce[names[2*g]]++;
+							window.opener.document.getElementById("h"+names[2*g]).innerHTML=window.opener.Territori[names[2*g]].tropes;
+
+						}
+					}
+					l=2*g+1*1;
+					l=names[l];
+					n=window.opener.Jugador["jugador"+i].cards.length;
+					n--;
+					if (l==n){
+						window.opener.Jugador["jugador"+i].cards.length--;
+					}
+					else{
+						c=window.opener.Jugador["jugador"+i].cards.length;
+						window.opener.Jugador["jugador"+i].cards[l]=window.opener.Jugador["jugador"+i].cards[c-1];
+						window.opener.Jugador["jugador"+i].cards.length--;
+					}
+				}
+				window.opener.territoritroups(i);
+				window.close();
+			}
+			else{
+				alert('Les cartes seleccionades no son valides torna a seleccionar-les.');
+			}
+		}
+	}
+	</script>
+	<noscript> hay que joderse </noscript>
+	<form id="ShowCards" name="ShowCards" method="post" action="">
+	</form>
+</head>	
+<body>
+	<script language="JavaScript">
+	var i;
+	i=window.opener.Turn.turn;
+	use(i);
+	</script>
+</body>
+</html>

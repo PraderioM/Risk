@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title>Escollir colors</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1" />
+	<script language="JavaScript">
+
+	/*function asigncolor will asign the chosencolor to the selected player and will close the window if all of the players have made their choise or permit the next player to make his choice otherwise*/
+	function asigncolor(i){
+		var color, n;
+		color=document.getElementById("PossibleColors").selectedIndex;
+		n=Colors.english.length;
+		n--;
+		if (color==n){
+			Colors.english.pop();
+			Colors.catalan.pop();
+		}
+		else{
+			Colors.english.splice(color, 1);
+			Colors.catalan.splice(color, 1);
+		}
+		color=document.getElementById("PossibleColors").options[color].value;
+		n=window.opener.Jugador.nombre;
+		window.opener.Jugador["jugador"+i].troupcolor=color;
+		if (i==n){
+			finish(n);
+		}
+		else{
+			i++;
+			chosecolors(i);
+		}
+	}
+
+	/* function finish will ask the players how do they wish to continue and will run a different function on the opener
+	 * window and close the current one depending on that*/
+	 function finish(n){
+		var i;
+		i=confirm("Desitgeu que jo introdueixi els paisos aleatoriament?");
+		if (i){
+			window.opener.asignarpaisos(n);
+		}
+		else{
+			alert("Oh vale.\nJa veig que no em necessites per res :(.\nSi em disculpes un moment m'en vaig a plorar, pots aprofitar per anar introduint manualment els paisos male\357t insensible.");
+			window.opener.makelegend(window.opener.Jugador.nombre);
+			window.opener.makeplayerimage();
+			window.opener.setonclick4();
+			window.opener.escollirpais(1);
+		}	
+		window.close();
+	 }
+
+	/*function chosecolors will show a list to permitt a selected player to chose the color he wants his troups to be*/
+	function chosecolors(i){
+		var j, text, n, number;
+		n=Colors.english.length;
+		number=window.opener.Jugador.nombre;
+		text='<center><table style="width:80%"><tr><td>Jugador <b>'+window.opener.Jugador["jugador"+i].name+'</b> selecciona el color de les teves tropes</td>';
+		text+='<td align="right"><select name="PossibleColors" id="PossibleColors">'
+		for (j=0; j<n; j++){
+			text+='<option value="'+Colors.english[j]+'">'+Colors.catalan[j]+'</options>';
+		}
+		text+='</td><td align="right"><input type="button" name="Accept" id="Accept" value="Acceptar" onclick="asigncolor('+i+')"></td></tr></table></center>';
+		document.getElementById("ColorChose").innerHTML=text;
+	}
+	</script>
+	<noscript> hay que joderse </noscript>
+	<form id="ColorChose" name="ColorChose" method="post" action="">
+	</form>
+</head>	
+<body>
+	<script language="JavaScript">
+	Colors=new Object();
+	Colors.english=['red', 'white', 'yellow', 'black', 'orange', 'green', 'blue', 'Zoro', 'WhiteBeard', 'Luffy', 'Chopper', 'Franky', 'Sanji', 'Brook', 'Nami', 'Robin', 'Usopp', 'Sogeking', 'LunaLovegood', 'Caca', 'AlanTuring', 'GuySensei', 'GuyMotivated', 'GuyReallyMotivated', 'GuyExtremlyMotivated', 'RockLee', 'LeeMotivated', 'Moncasi', 'Sauron', 'SauronEye', 'Auri', 'Kvothe', 'Raruto', 'Zap'];
+	Colors.catalan=['Targaryen', 'Stark', 'Lannister', 'Baratheon', 'Martell', 'Tyrell', 'Arpy', 'Roronoa Zoro', 'Edward Newgate (Barbablanca)', 'Monkey D Luffy', 'Tony Tony Chopper', 'Cutty Flam (Franky)', 'Kuroashi no Sanji', 'Brook el cantaire', 'Nami la gata ladrona', 'Nico Robin', 'God Usopp', 'Sogeking el rey dels tiradors', 'Luna Lovegood', 'Caca', 'Alan Turing', 'Maito Gai', 'Maito Gai motivat', 'Maito Gai molt motivat', 'Maito Gai extremadament motivat', 'Rock Lee', 'Rock Lee motivat', 'Jaume Solsona Moncasi', 'Sauron', 'Ull de Sauron', 'Auri', 'Kvothe', 'Zumomaki Raruto', 'Zap'];
+	chosecolors(1);
+	</script>
+</body>
+</html>
