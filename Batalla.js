@@ -214,7 +214,7 @@ function declaredeath(){
             text='Felicitats '+Battle.attacker.name+' has aconseguit superar tots els teus adversaris i declarar-te el amo absolut ';
             text+='de la Terra et mereixes aquesta vict\362ria.';
             alert(text);
-            window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/WeAreTheChampions.mp4", "Just listen to the music and feel the glory");
+            window.open("./Videos/WeAreTheChampions.mp4", "Just listen to the music and feel the glory");
             try{
                 window.opener.close();
             }
@@ -239,7 +239,7 @@ function declaredeath(){
                 text+='l\'home que ha matat el meu creador.';
             }
             alert(text);
-            window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/Stewie.mp4", "Cabronass");
+            window.open("./Videos/Stewie.mp4", "Cabronass");
             try{
                 window.opener.close();
             }
@@ -252,7 +252,7 @@ function declaredeath(){
             text='Felicitats '+Battle.attacker.name+' ho has fet, has aconseguit superar tots els teus adversaris i declarar-te el ';
             text+='amo absolut de la terra et mereixes aquesta vict\362ria';
             alert(text);
-            window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/IDidIt.mp4", "You did it");
+            window.open("./Videos/IDidIt.mp4", "You did it");
             try{
                 window.opener.close();
             }
@@ -264,7 +264,7 @@ function declaredeath(){
         else if (Battle.attacker.name=='Moha'){
             text='Adoreu tots el gran Moha que no obstant les adversitats del cam\355 ha aconseguit al\347ar-se victori\363s entre els seus enemics.';
             alert(text);
-            window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/WeAreTheChampions.mp4", "Just listen to the music and feel the glory");
+            window.open("./Videos/WeAreTheChampions.mp4", "Just listen to the music and feel the glory");
             try{
                 window.opener.close();
             }
@@ -277,7 +277,7 @@ function declaredeath(){
             text='El gran Marco Praderio s\'ha declarat superior a tots els seus adversaris com era obvi que passaria\n';
             text+'Ara sezillament accepta la teva vict\362ria i celebra.';
             alert(text);
-            window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/WeAreTheChampions.mp4", "Just listen to the music and feel the glory");
+            window.open("./Videos/WeAreTheChampions.mp4", "Just listen to the music and feel the glory");
             try{
                 window.opener.close();
             }
@@ -291,13 +291,13 @@ function declaredeath(){
         if (Battle.defender.name!="Marco" && Battle.defender.name!='Moha'){
             if (Battle.defender.name=="Assass\355"){
                 alert('Ho hem aconseguit pare.\nLa teva mort ha sigut venjada.\nPots descansar en pau.');
-                window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/DoraLaExploradoraLoHicimos.mp4", "We did it");
+                window.open("./Videos/DoraLaExploradoraLoHicimos.mp4", "We did it");
             }
             else if (Battle.defender.name=='Eretje'){
                 text='Gaudeix de una eternitat (o fins la pr\362xima partida de Risk) als inferns (o sigui sense jugar a Risk) Eretje.\n';
                 text+='La venjan\347a del gran Moha ha caigut sobre tu.';
                 alert(text);
-                window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/FarfallaVendetta.mp4", "Venjan\347a");
+                window.open("./Videos/FarfallaVendetta.mp4", "Venjan\347a");
             }
             else if (Battle.attacker.name=='Moha'){
                 text='El gran Moha ha aconseguit, com era ll\362gic pensar, derrotar un dels seus nombrosos enemics i d\'aquesta manera ';
@@ -322,13 +322,13 @@ function declaredeath(){
             text+='tercer dia en una espiral de fibonacci.';
             alert(text);
             alert('Tot i aixis la seva mort ser\340 venjada');
-            window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/VenganzaRollitos.mp4", "Venjan\347a");
+            window.open("./Videos/VenganzaRollitos.mp4", "Venjan\347a");
             Battle.attacker.name='Eretje';
         }
         else{
            text='NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n';
            text+='Perque has matat el meu pare assasi? Ell era bona persona';
-           window.open("http://localhost/ProgramesEnJavascript/Risk/Videos/MuerteDeMufasa.mp4", "yoro");
+           window.open("./Videos/MuerteDeMufasa.mp4", "yoro");
            alert(text);
            Battle.attacker.name='Assass\355';
         }

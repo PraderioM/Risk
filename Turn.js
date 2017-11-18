@@ -220,7 +220,7 @@ function territoritroups(i){
 
 /*playcards will return the number of troups that a given player should recive because of his cards*/
 function playcards(){
-	window.open("http://localhost/ProgramesEnJavascript/Risk/PlayCards.html", "Usar cartes", "width=1000, height=500");
+	window.open("./PlayCards.html", "Usar cartes", "width=1000, height=500");
 }
 
 /* function writetroups changes the html code so the player can decide where to place the reinforcement troups*/
@@ -419,5 +419,5 @@ function defend(i){
 
 /* popup() opens a new window where the attac will be developed*/
 function popup(){
-	battle=window.open("http://localhost/ProgramesEnJavascript/Risk/batalla.html", "Batalla", "width=1000, height=500");
+	battle=window.open("./batalla.html", "Batalla", "width=1000, height=500");
 }

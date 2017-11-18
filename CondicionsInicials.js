@@ -8,7 +8,7 @@ function condicionsinicials(){
 	jugadors=introduirnoms();
 	Jugador.nombre=jugadors;
 	tensiontime=1500;
-	window.open("http://localhost/ProgramesEnJavascript/Risk/ChoseColors.html", "Escollir colors", "width=1000, height=500");
+	window.open("./ChoseColors.html", "Escollir colors", "width=1000, height=500");
 }
 
 /* function introduirdiferencies will create an object with multiple attributes that will lead to images*/
@@ -728,7 +728,7 @@ function makedifferent(){
 
 /* function discrimen will open different.html page*/
 function discrimine(){
-	window.open("http://localhost/ProgramesEnJavascript/Risk/different.html", "Favoritismes", "width=1000, height=500");
+	window.open("./different.html", "Favoritismes", "width=1000, height=500");
 }
 
 /* function refresh will reload all the player images on the Board div*/
